@@ -1,5 +1,4 @@
 name: Strapi Blue/Green Deploy
-
 on:
   push:
     branches:
