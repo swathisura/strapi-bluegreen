@@ -9,6 +9,11 @@ on:
 env:
   AWS_REGION: us-east-1
   CONTAINER_NAME: strapi
+  ECR_REPOSITORY: swathi-dev
+  ECS_CLUSTER: swathi-dev-cluster
+  ECS_SERVICE: swathi-dev-service
+  CD_APP: swathi-dev-codedeploy
+  CD_GROUP: swathi-dev-dg
 
 jobs:
   deploy:
@@ -18,24 +23,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Set environment variables based on branch
-        run: |
-          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
-            echo "ENV=prod" >> $GITHUB_ENV
-            echo "ECR_REPO=strapi-prod" >> $GITHUB_ENV
-            echo "ECS_CLUSTER=strapi-prod-cluster" >> $GITHUB_ENV
-            echo "ECS_SERVICE=strapi-prod-service" >> $GITHUB_ENV
-            echo "CD_APP=strapi-prod-codedeploy" >> $GITHUB_ENV
-            echo "CD_GROUP=strapi-prod-dg" >> $GITHUB_ENV
-          else
-            echo "ENV=dev" >> $GITHUB_ENV
-            echo "ECR_REPO=strapi-dev" >> $GITHUB_ENV
-            echo "ECS_CLUSTER=strapi-dev-cluster" >> $GITHUB_ENV
-            echo "ECS_SERVICE=strapi-dev-service" >> $GITHUB_ENV
-            echo "CD_APP=strapi-dev-codedeploy" >> $GITHUB_ENV
-            echo "CD_GROUP=strapi-dev-dg" >> $GITHUB_ENV
-          fi
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -54,9 +41,9 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPO:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/$ECR_REPO:$IMAGE_TAG
-          echo "image=$ECR_REGISTRY/$ECR_REPO:$IMAGE_TAG" >> $GITHUB_OUTPUT
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./strapi-app
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
       - name: Update ECS task definition with new image
         id: task-def
