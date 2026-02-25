@@ -1,0 +1,25 @@
+{
+  "family": "swathi-dev-task",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "1024",
+  "executionRoleArn": "arn:aws:iam::811738710312:role/ecs_fargate_taskRole",
+  "containerDefinitions": [
+    {
+      "name": "strapi",
+      "image": "811738710312.dkr.ecr.us-east-1.amazonaws.com/swathi-dev:latest",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 1337,
+          "hostPort": 1337,
+          "protocol": "tcp"
+        }
+      ],
+      "environment": [
+        { "name": "NODE_ENV", "value": "development" }
+      ]
+    }
+  ]
+}

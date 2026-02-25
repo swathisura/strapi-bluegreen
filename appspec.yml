@@ -1,0 +1,19 @@
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: <TASK_DEFINITION>
+        LoadBalancerInfo:
+          ContainerName: "strapi"
+          ContainerPort: 1337
+        PlatformVersion: "LATEST"
+        NetworkConfiguration:
+          AwsvpcConfiguration:
+            Subnets:
+              - "subnet-0cc23dc8400d81bf3"
+              - "subnet-03328ca5b606c3a5f"
+            SecurityGroups:
+              - "sg-0bc71cba8dd367727"
+            AssignPublicIp: "ENABLED"
+Hooks: []

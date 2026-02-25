@@ -1,0 +1,810 @@
+{
+  "version": 4,
+  "terraform_version": "1.12.2",
+  "serial": 27,
+  "lineage": "4d83ddaa-e452-c08e-7718-ce0118f7d2bb",
+  "outputs": {
+    "alb_dns_name": {
+      "value": "swathi-dev-alb-1301787975.us-east-1.elb.amazonaws.com",
+      "type": "string"
+    },
+    "codedeploy_app_name": {
+      "value": "swathi-dev-codedeploy",
+      "type": "string"
+    },
+    "ecr_repository_url": {
+      "value": "811738710312.dkr.ecr.us-east-1.amazonaws.com/swathi-dev",
+      "type": "string"
+    },
+    "ecs_cluster_name": {
+      "value": "swathi-dev-cluster",
+      "type": "string"
+    },
+    "ecs_service_name": {
+      "value": "swathi-dev-service",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "module": "module.alb",
+      "mode": "managed",
+      "type": "aws_lb",
+      "name": "main",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "access_logs": [
+              {
+                "bucket": "",
+                "enabled": false,
+                "prefix": ""
+              }
+            ],
+            "arn": "arn:aws:elasticloadbalancing:us-east-1:811738710312:loadbalancer/app/swathi-dev-alb/d0247801e8c3bd5b",
+            "arn_suffix": "app/swathi-dev-alb/d0247801e8c3bd5b",
+            "client_keep_alive": 3600,
+            "connection_logs": [
+              {
+                "bucket": "",
+                "enabled": false,
+                "prefix": ""
+              }
+            ],
+            "customer_owned_ipv4_pool": "",
+            "desync_mitigation_mode": "defensive",
+            "dns_name": "swathi-dev-alb-1301787975.us-east-1.elb.amazonaws.com",
+            "dns_record_client_routing_policy": null,
+            "drop_invalid_header_fields": false,
+            "enable_cross_zone_load_balancing": true,
+            "enable_deletion_protection": false,
+            "enable_http2": true,
+            "enable_tls_version_and_cipher_suite_headers": false,
+            "enable_waf_fail_open": false,
+            "enable_xff_client_port": false,
+            "enable_zonal_shift": false,
+            "enforce_security_group_inbound_rules_on_private_link_traffic": "",
+            "health_check_logs": [
+              {
+                "bucket": "",
+                "enabled": false,
+                "prefix": ""
+              }
+            ],
+            "id": "arn:aws:elasticloadbalancing:us-east-1:811738710312:loadbalancer/app/swathi-dev-alb/d0247801e8c3bd5b",
+            "idle_timeout": 60,
+            "internal": false,
+            "ip_address_type": "ipv4",
+            "ipam_pools": [],
+            "load_balancer_type": "application",
+            "minimum_load_balancer_capacity": [],
+            "name": "swathi-dev-alb",
+            "name_prefix": "",
+            "preserve_host_header": false,
+            "region": "us-east-1",
+            "secondary_ips_auto_assigned_per_subnet": null,
+            "security_groups": [
+              "sg-04bb69b5a03a1c5ef"
+            ],
+            "subnet_mapping": [
+              {
+                "allocation_id": "",
+                "ipv6_address": "",
+                "outpost_id": "",
+                "private_ipv4_address": "",
+                "subnet_id": "subnet-03328ca5b606c3a5f"
+              },
+              {
+                "allocation_id": "",
+                "ipv6_address": "",
+                "outpost_id": "",
+                "private_ipv4_address": "",
+                "subnet_id": "subnet-0cc23dc8400d81bf3"
+              }
+            ],
+            "subnets": [
+              "subnet-03328ca5b606c3a5f",
+              "subnet-0cc23dc8400d81bf3"
+            ],
+            "tags": {
+              "Name": "swathi-dev-alb"
+            },
+            "tags_all": {
+              "Name": "swathi-dev-alb"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-0778ad9a2069279fc",
+            "xff_header_processing_mode": "append",
+            "zone_id": "Z35SXDOTRQ7X7K"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "arn": "arn:aws:elasticloadbalancing:us-east-1:811738710312:loadbalancer/app/swathi-dev-alb/d0247801e8c3bd5b"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwLCJ1cGRhdGUiOjYwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.alb.aws_security_group.alb"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.alb",
+      "mode": "managed",
+      "type": "aws_lb_listener",
+      "name": "http",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "alpn_policy": null,
+            "arn": "arn:aws:elasticloadbalancing:us-east-1:811738710312:listener/app/swathi-dev-alb/d0247801e8c3bd5b/1adfbc6287cfe9dd",
+            "certificate_arn": null,
+            "default_action": [
+              {
+                "authenticate_cognito": [],
+                "authenticate_oidc": [],
+                "fixed_response": [],
+                "forward": [],
+                "jwt_validation": [],
+                "order": 1,
+                "redirect": [],
+                "target_group_arn": "arn:aws:elasticloadbalancing:us-east-1:811738710312:targetgroup/swathi-dev-blue-tg/09846cb99f759d85",
+                "type": "forward"
+              }
+            ],
+            "id": "arn:aws:elasticloadbalancing:us-east-1:811738710312:listener/app/swathi-dev-alb/d0247801e8c3bd5b/1adfbc6287cfe9dd",
+            "load_balancer_arn": "arn:aws:elasticloadbalancing:us-east-1:811738710312:loadbalancer/app/swathi-dev-alb/d0247801e8c3bd5b",
+            "mutual_authentication": [],
+            "port": 80,
+            "protocol": "HTTP",
+            "region": "us-east-1",
+            "routing_http_request_x_amzn_mtls_clientcert_header_name": null,
+            "routing_http_request_x_amzn_mtls_clientcert_issuer_header_name": null,
+            "routing_http_request_x_amzn_mtls_clientcert_leaf_header_name": null,
+            "routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name": null,
+            "routing_http_request_x_amzn_mtls_clientcert_subject_header_name": null,
+            "routing_http_request_x_amzn_mtls_clientcert_validity_header_name": null,
+            "routing_http_request_x_amzn_tls_cipher_suite_header_name": null,
+            "routing_http_request_x_amzn_tls_version_header_name": null,
+            "routing_http_response_access_control_allow_credentials_header_value": "",
+            "routing_http_response_access_control_allow_headers_header_value": "",
+            "routing_http_response_access_control_allow_methods_header_value": "",
+            "routing_http_response_access_control_allow_origin_header_value": "",
+            "routing_http_response_access_control_expose_headers_header_value": "",
+            "routing_http_response_access_control_max_age_header_value": "",
+            "routing_http_response_content_security_policy_header_value": "",
+            "routing_http_response_server_enabled": true,
+            "routing_http_response_strict_transport_security_header_value": "",
+            "routing_http_response_x_content_type_options_header_value": "",
+            "routing_http_response_x_frame_options_header_value": "",
+            "ssl_policy": "",
+            "tags": null,
+            "tags_all": {},
+            "tcp_idle_timeout_seconds": null,
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "arn": "arn:aws:elasticloadbalancing:us-east-1:811738710312:listener/app/swathi-dev-alb/d0247801e8c3bd5b/1adfbc6287cfe9dd"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsInVwZGF0ZSI6MzAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.alb.aws_lb.main",
+            "module.alb.aws_lb_target_group.blue",
+            "module.alb.aws_security_group.alb"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.alb",
+      "mode": "managed",
+      "type": "aws_lb_listener",
+      "name": "test",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "alpn_policy": null,
+            "arn": "arn:aws:elasticloadbalancing:us-east-1:811738710312:listener/app/swathi-dev-alb/d0247801e8c3bd5b/f9890302335c0f64",
+            "certificate_arn": null,
+            "default_action": [
+              {
+                "authenticate_cognito": [],
+                "authenticate_oidc": [],
+                "fixed_response": [],
+                "forward": [],
+                "jwt_validation": [],
+                "order": 1,
+                "redirect": [],
+                "target_group_arn": "arn:aws:elasticloadbalancing:us-east-1:811738710312:targetgroup/swathi-dev-green-tg/c1818338ec14e061",
+                "type": "forward"
+              }
+            ],
+            "id": "arn:aws:elasticloadbalancing:us-east-1:811738710312:listener/app/swathi-dev-alb/d0247801e8c3bd5b/f9890302335c0f64",
+            "load_balancer_arn": "arn:aws:elasticloadbalancing:us-east-1:811738710312:loadbalancer/app/swathi-dev-alb/d0247801e8c3bd5b",
+            "mutual_authentication": [],
+            "port": 8080,
+            "protocol": "HTTP",
+            "region": "us-east-1",
+            "routing_http_request_x_amzn_mtls_clientcert_header_name": null,
+            "routing_http_request_x_amzn_mtls_clientcert_issuer_header_name": null,
+            "routing_http_request_x_amzn_mtls_clientcert_leaf_header_name": null,
+            "routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name": null,
+            "routing_http_request_x_amzn_mtls_clientcert_subject_header_name": null,
+            "routing_http_request_x_amzn_mtls_clientcert_validity_header_name": null,
+            "routing_http_request_x_amzn_tls_cipher_suite_header_name": null,
+            "routing_http_request_x_amzn_tls_version_header_name": null,
+            "routing_http_response_access_control_allow_credentials_header_value": "",
+            "routing_http_response_access_control_allow_headers_header_value": "",
+            "routing_http_response_access_control_allow_methods_header_value": "",
+            "routing_http_response_access_control_allow_origin_header_value": "",
+            "routing_http_response_access_control_expose_headers_header_value": "",
+            "routing_http_response_access_control_max_age_header_value": "",
+            "routing_http_response_content_security_policy_header_value": "",
+            "routing_http_response_server_enabled": true,
+            "routing_http_response_strict_transport_security_header_value": "",
+            "routing_http_response_x_content_type_options_header_value": "",
+            "routing_http_response_x_frame_options_header_value": "",
+            "ssl_policy": "",
+            "tags": null,
+            "tags_all": {},
+            "tcp_idle_timeout_seconds": null,
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "arn": "arn:aws:elasticloadbalancing:us-east-1:811738710312:listener/app/swathi-dev-alb/d0247801e8c3bd5b/f9890302335c0f64"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsInVwZGF0ZSI6MzAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.alb.aws_lb.main",
+            "module.alb.aws_lb_target_group.green",
+            "module.alb.aws_security_group.alb"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.alb",
+      "mode": "managed",
+      "type": "aws_lb_target_group",
+      "name": "blue",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:elasticloadbalancing:us-east-1:811738710312:targetgroup/swathi-dev-blue-tg/09846cb99f759d85",
+            "arn_suffix": "targetgroup/swathi-dev-blue-tg/09846cb99f759d85",
+            "connection_termination": null,
+            "deregistration_delay": "300",
+            "health_check": [
+              {
+                "enabled": true,
+                "healthy_threshold": 2,
+                "interval": 30,
+                "matcher": "200-299",
+                "path": "/",
+                "port": "traffic-port",
+                "protocol": "HTTP",
+                "timeout": 5,
+                "unhealthy_threshold": 3
+              }
+            ],
+            "id": "arn:aws:elasticloadbalancing:us-east-1:811738710312:targetgroup/swathi-dev-blue-tg/09846cb99f759d85",
+            "ip_address_type": "ipv4",
+            "lambda_multi_value_headers_enabled": false,
+            "load_balancer_arns": [],
+            "load_balancing_algorithm_type": "round_robin",
+            "load_balancing_anomaly_mitigation": "off",
+            "load_balancing_cross_zone_enabled": "use_load_balancer_configuration",
+            "name": "swathi-dev-blue-tg",
+            "name_prefix": "",
+            "port": 1337,
+            "preserve_client_ip": null,
+            "protocol": "HTTP",
+            "protocol_version": "HTTP1",
+            "proxy_protocol_v2": false,
+            "region": "us-east-1",
+            "slow_start": 0,
+            "stickiness": [
+              {
+                "cookie_duration": 86400,
+                "cookie_name": "",
+                "enabled": false,
+                "type": "lb_cookie"
+              }
+            ],
+            "tags": {
+              "Name": "swathi-dev-blue-tg"
+            },
+            "tags_all": {
+              "Name": "swathi-dev-blue-tg"
+            },
+            "target_control_port": 0,
+            "target_failover": [
+              {
+                "on_deregistration": null,
+                "on_unhealthy": null
+              }
+            ],
+            "target_group_health": [
+              {
+                "dns_failover": [
+                  {
+                    "minimum_healthy_targets_count": "1",
+                    "minimum_healthy_targets_percentage": "off"
+                  }
+                ],
+                "unhealthy_state_routing": [
+                  {
+                    "minimum_healthy_targets_count": 1,
+                    "minimum_healthy_targets_percentage": "off"
+                  }
+                ]
+              }
+            ],
+            "target_health_state": [
+              {
+                "enable_unhealthy_connection_termination": null,
+                "unhealthy_draining_interval": null
+              }
+            ],
+            "target_type": "ip",
+            "vpc_id": "vpc-0778ad9a2069279fc"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "arn": "arn:aws:elasticloadbalancing:us-east-1:811738710312:targetgroup/swathi-dev-blue-tg/09846cb99f759d85"
+          },
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.alb",
+      "mode": "managed",
+      "type": "aws_lb_target_group",
+      "name": "green",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:elasticloadbalancing:us-east-1:811738710312:targetgroup/swathi-dev-green-tg/c1818338ec14e061",
+            "arn_suffix": "targetgroup/swathi-dev-green-tg/c1818338ec14e061",
+            "connection_termination": null,
+            "deregistration_delay": "300",
+            "health_check": [
+              {
+                "enabled": true,
+                "healthy_threshold": 2,
+                "interval": 30,
+                "matcher": "200-299",
+                "path": "/",
+                "port": "traffic-port",
+                "protocol": "HTTP",
+                "timeout": 5,
+                "unhealthy_threshold": 3
+              }
+            ],
+            "id": "arn:aws:elasticloadbalancing:us-east-1:811738710312:targetgroup/swathi-dev-green-tg/c1818338ec14e061",
+            "ip_address_type": "ipv4",
+            "lambda_multi_value_headers_enabled": false,
+            "load_balancer_arns": [],
+            "load_balancing_algorithm_type": "round_robin",
+            "load_balancing_anomaly_mitigation": "off",
+            "load_balancing_cross_zone_enabled": "use_load_balancer_configuration",
+            "name": "swathi-dev-green-tg",
+            "name_prefix": "",
+            "port": 1337,
+            "preserve_client_ip": null,
+            "protocol": "HTTP",
+            "protocol_version": "HTTP1",
+            "proxy_protocol_v2": false,
+            "region": "us-east-1",
+            "slow_start": 0,
+            "stickiness": [
+              {
+                "cookie_duration": 86400,
+                "cookie_name": "",
+                "enabled": false,
+                "type": "lb_cookie"
+              }
+            ],
+            "tags": {
+              "Name": "swathi-dev-green-tg"
+            },
+            "tags_all": {
+              "Name": "swathi-dev-green-tg"
+            },
+            "target_control_port": 0,
+            "target_failover": [
+              {
+                "on_deregistration": null,
+                "on_unhealthy": null
+              }
+            ],
+            "target_group_health": [
+              {
+                "dns_failover": [
+                  {
+                    "minimum_healthy_targets_count": "1",
+                    "minimum_healthy_targets_percentage": "off"
+                  }
+                ],
+                "unhealthy_state_routing": [
+                  {
+                    "minimum_healthy_targets_count": 1,
+                    "minimum_healthy_targets_percentage": "off"
+                  }
+                ]
+              }
+            ],
+            "target_health_state": [
+              {
+                "enable_unhealthy_connection_termination": null,
+                "unhealthy_draining_interval": null
+              }
+            ],
+            "target_type": "ip",
+            "vpc_id": "vpc-0778ad9a2069279fc"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "arn": "arn:aws:elasticloadbalancing:us-east-1:811738710312:targetgroup/swathi-dev-green-tg/c1818338ec14e061"
+          },
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.alb",
+      "mode": "managed",
+      "type": "aws_security_group",
+      "name": "alb",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:811738710312:security-group/sg-04bb69b5a03a1c5ef",
+            "description": "Managed by Terraform",
+            "egress": [
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 0,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "-1",
+                "security_groups": [],
+                "self": false,
+                "to_port": 0
+              }
+            ],
+            "id": "sg-04bb69b5a03a1c5ef",
+            "ingress": [
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "Allow HTTP",
+                "from_port": 80,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 80
+              },
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "Allow HTTPS",
+                "from_port": 443,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 443
+              },
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "Allow test listener for Green environment",
+                "from_port": 8080,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 8080
+              }
+            ],
+            "name": "swathi-dev-alb-sg",
+            "name_prefix": "",
+            "owner_id": "811738710312",
+            "region": "us-east-1",
+            "revoke_rules_on_delete": false,
+            "tags": {
+              "Name": "swathi-dev-alb-sg"
+            },
+            "tags_all": {
+              "Name": "swathi-dev-alb-sg"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-0778ad9a2069279fc"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "811738710312",
+            "id": "sg-04bb69b5a03a1c5ef",
+            "region": "us-east-1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6OTAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0="
+        }
+      ]
+    },
+    {
+      "module": "module.cloudwatch",
+      "mode": "managed",
+      "type": "aws_cloudwatch_log_group",
+      "name": "ecs",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "status": "tainted",
+          "schema_version": 0,
+          "attributes": {
+            "arn": null,
+            "deletion_protection_enabled": null,
+            "id": "/ecs/swathi-dev",
+            "kms_key_id": null,
+            "log_group_class": null,
+            "name": "/ecs/swathi-dev",
+            "name_prefix": null,
+            "region": "us-east-1",
+            "retention_in_days": 7,
+            "skip_destroy": false,
+            "tags": null,
+            "tags_all": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.codedeploy",
+      "mode": "managed",
+      "type": "aws_codedeploy_app",
+      "name": "app",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "application_id": "32591432-f543-44f8-b519-9a87f71d146b",
+            "arn": "arn:aws:codedeploy:us-east-1:811738710312:application:swathi-dev-codedeploy",
+            "compute_platform": "ECS",
+            "github_account_name": "",
+            "id": "32591432-f543-44f8-b519-9a87f71d146b:swathi-dev-codedeploy",
+            "linked_to_github": false,
+            "name": "swathi-dev-codedeploy",
+            "region": "us-east-1",
+            "tags": null,
+            "tags_all": {}
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.ecr",
+      "mode": "managed",
+      "type": "aws_ecr_lifecycle_policy",
+      "name": "cleanup",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "swathi-dev",
+            "policy": "{\"rules\":[{\"action\":{\"type\":\"expire\"},\"description\":\"Keep last 10 images\",\"rulePriority\":1,\"selection\":{\"countNumber\":10,\"countType\":\"imageCountMoreThan\",\"tagStatus\":\"any\"}}]}",
+            "region": "us-east-1",
+            "registry_id": "811738710312",
+            "repository": "swathi-dev"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "811738710312",
+            "region": "us-east-1",
+            "repository": "swathi-dev"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.ecr.aws_ecr_repository.app"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.ecr",
+      "mode": "managed",
+      "type": "aws_ecr_repository",
+      "name": "app",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecr:us-east-1:811738710312:repository/swathi-dev",
+            "encryption_configuration": [
+              {
+                "encryption_type": "AES256",
+                "kms_key": ""
+              }
+            ],
+            "force_delete": null,
+            "id": "swathi-dev",
+            "image_scanning_configuration": [
+              {
+                "scan_on_push": true
+              }
+            ],
+            "image_tag_mutability": "MUTABLE",
+            "image_tag_mutability_exclusion_filter": [],
+            "name": "swathi-dev",
+            "region": "us-east-1",
+            "registry_id": "811738710312",
+            "repository_url": "811738710312.dkr.ecr.us-east-1.amazonaws.com/swathi-dev",
+            "tags": {
+              "Name": "swathi-dev-ecr"
+            },
+            "tags_all": {
+              "Name": "swathi-dev-ecr"
+            },
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "811738710312",
+            "name": "swathi-dev",
+            "region": "us-east-1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "module": "module.ecs",
+      "mode": "managed",
+      "type": "aws_ecs_cluster",
+      "name": "main",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecs:us-east-1:811738710312:cluster/swathi-dev-cluster",
+            "configuration": [],
+            "id": "arn:aws:ecs:us-east-1:811738710312:cluster/swathi-dev-cluster",
+            "name": "swathi-dev-cluster",
+            "region": "us-east-1",
+            "service_connect_defaults": [],
+            "setting": [
+              {
+                "name": "containerInsights",
+                "value": "enabled"
+              }
+            ],
+            "tags": {
+              "Name": "swathi-dev-cluster"
+            },
+            "tags_all": {
+              "Name": "swathi-dev-cluster"
+            }
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.ecs",
+      "mode": "managed",
+      "type": "aws_security_group",
+      "name": "ecs",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:811738710312:security-group/sg-0bc71cba8dd367727",
+            "description": "Managed by Terraform",
+            "egress": [
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 0,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "-1",
+                "security_groups": [],
+                "self": false,
+                "to_port": 0
+              }
+            ],
+            "id": "sg-0bc71cba8dd367727",
+            "ingress": [
+              {
+                "cidr_blocks": [],
+                "description": "Allow traffic from ALB only",
+                "from_port": 1337,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [
+                  "sg-04bb69b5a03a1c5ef"
+                ],
+                "self": false,
+                "to_port": 1337
+              }
+            ],
+            "name": "swathi-dev-ecs-sg",
+            "name_prefix": "",
+            "owner_id": "811738710312",
+            "region": "us-east-1",
+            "revoke_rules_on_delete": false,
+            "tags": {
+              "Name": "swathi-dev-ecs-sg"
+            },
+            "tags_all": {
+              "Name": "swathi-dev-ecs-sg"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-0778ad9a2069279fc"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "811738710312",
+            "id": "sg-0bc71cba8dd367727",
+            "region": "us-east-1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6OTAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "module.alb.aws_security_group.alb"
+          ]
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}
